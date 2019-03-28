@@ -19,7 +19,9 @@
       <input 
         [disabled]="isPersonDetailsEditableDisabled"
         class="form-control"
-        type="text"  value="{{user.fname}}">
+        type="text"
+        [(ngModel)]="user.fname"
+        value="{{user.fname}}">
     </div>
     <div class="from-group">
         <label for="lname">Last Name</label>
