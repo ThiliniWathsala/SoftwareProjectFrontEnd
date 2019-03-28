@@ -1,3 +1,4 @@
+<!--set image and background -->
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -8,13 +9,13 @@
         <p>{{user.fname}} {{user.lname}}</p>
         <p>{{user.position}}</p>
       </div>
-
+<!--set personal details-->
       <hr>
       <div>
         <h5 style="display:inline-block">Personal Details</h5>
         <button style="float:right" class="btn btn-primary"  (click)="PersonDetailsEditButtonClick($event)" >Edit</button>
       </div>
-      <div class="from-group">
+      <div class="form-group">
       <label for="fname">First Name</label>
       <input 
         [disabled]="isPersonDetailsEditableDisabled"
@@ -23,33 +24,62 @@
         [(ngModel)]="user.fname"
         value="{{user.fname}}">
     </div>
-    <div class="from-group">
+    <div class="form-group">
         <label for="lname">Last Name</label>
         <input 
+        [(ngModel)]="user.lname"
         [disabled]="isPersonDetailsEditableDisabled"
         class="form-control"
         type="text" value="{{user.lname}}">
       </div>
-      <div class="from-group">
+      <div class="form-group">
           <label for="Position">Position</label>
           <input 
+          [(ngModel)]="user.position"
           [disabled]="isPersonDetailsEditableDisabled"
           class="form-control"
           type="text"  value="{{user.position}}">
         </div>
-
+        <div class="form-group">
+          <label for="About-me">About me</label>
+              <textarea
+         
+            [(ngModel)]="user. aboutme"
+            [disabled]="isPersonDetailsEditableDisabled"
+            class="form-control"
+            cols="30"
+            rows="5"
+            type="text"  value="{{user. aboutme}}">
+        
+          </textarea>
+        </div>
+<!--set contact details-->
         <hr>
         <div>
           <h5 style="display:inline-block">Contact Details</h5>
-          <button style="float:right" class="btn btn-primary" >Edit</button>
+            <button
+              style="float:right"
+              class="btn btn-primary" 
+             (click)="ContactDetailsEditableDisabled($event)">Edit</button>
         </div>
         <div class="from-group">
             <label for="Contact">Contatc No</label>
+          <ul >
+            <li *ngFor="let contact of user.contacts"> 
+          
             <input 
             class="form-control"
-            type="text"  value="{{user.contacts}}">
+            type="text"  value="{{contact}}">
+          </li>
+          </ul>
           </div><br>
-        <button style="float:left" class="btn btn-primary" >Add more contacts</button><br><br>
+        <button 
+        *ngIf = "!isContactDetailsEditableDisabled"
+        style="float:left" 
+        class="btn btn-primary" 
+        (click)="addNewContact($event)"
+        [disabled]="isContactDetailsEditableDisabled"
+        >Add more contacts</button><br><br>
         <label for="Contact">Address</label>           
         <br><br>
         <div style="margin-left:8%">
@@ -57,27 +87,27 @@
             <div class="from-group">
                 <label for="number"> No:</label>
                 <input 
-                class="form-control"
-                type="text"  value="{{user.address.no}}">
+                  class="form-control"
+                  type="text"  value="{{user.address.no}}">
               </div>
               <div class="from-group">
                   <label for="Street">Street:</label>
                   <input 
-                  class="form-control"
-                  type="text"  value="{{user.address.street}}">
+                    class="form-control"
+                    type="text"  value="{{user.address.street}}">
                 </div>
                 <div class="from-group">
                     <label for="City">City:</label>
                     <input 
-                    class="form-control"
-                    type="text"  value="{{user.address.city}}">
+                     class="form-control"
+                     type="text"  value="{{user.address.city}}">
                   </div>
                  </div>
                  <div class="from-group">
                     <label for="email">email</label>
-                    <input 
-                    class="form-control"
-                    type="text"  value="{{user.email}}">
+                      <input 
+                            class="form-control"
+                            type="text"  value="{{user.email}}">
                   </div>
 
                      
