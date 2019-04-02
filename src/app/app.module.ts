@@ -6,6 +6,7 @@ import { UserComponent } from './user/user.component';
 //import { ModelsComponent } from './models/models.component';
 import {UserServices} from './Services/User.services';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,6 +15,7 @@ import {UserServices} from './Services/User.services';
   imports: [
     BrowserModule,
     FormsModule
+   
   ],
   providers: [UserServices],
   bootstrap: [AppComponent]

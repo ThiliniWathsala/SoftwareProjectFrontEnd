@@ -1,4 +1,4 @@
-export class User{ // to create user objects
+export class User{ // to create user objects (User is only a class not a component)
 id:String;
 userName:String;
 fname:String;
@@ -12,5 +12,10 @@ address:{       // create address object
     city:String;
 };
 email:String;
+username:String;
+currentPassword:String;
+password:String;
+newpassword:String;
+repassword:String;
 
 }

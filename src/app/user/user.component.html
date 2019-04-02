@@ -1,9 +1,11 @@
+<div style="background-color:gainsboro">
+ 
 <!--set image and background -->
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div style="text-align:center">
-        <img src='../../assets/user1.png' width="15%"> 
+        <img src='../../assets/user1.png' width="15%" > 
       </div>
       <div style="text-align:center">
         <p>{{user.fname}} {{user.lname}}</p>
@@ -13,8 +15,11 @@
       <hr>
       <div>
         <h5 style="display:inline-block">Personal Details</h5>
-        <button style="float:right" class="btn btn-primary"  (click)="PersonDetailsEditButtonClick($event)" >Edit</button>
+        <button style="float:right" 
+        class="btn btn-primary" 
+         (click)="PersonDetailsEditButtonClick($event)" *ngIf="isPersonDetailsEditableDisabled">Edit</button>
       </div>
+
       <div class="form-group">
       <label for="fname">First Name</label>
       <input 
@@ -22,8 +27,10 @@
         class="form-control"
         type="text"
         [(ngModel)]="user.fname"
-        value="{{user.fname}}">
+        value="{{user.fname}}"
+            >
     </div>
+
     <div class="form-group">
         <label for="lname">Last Name</label>
         <input 
@@ -32,6 +39,7 @@
         class="form-control"
         type="text" value="{{user.lname}}">
       </div>
+
       <div class="form-group">
           <label for="Position">Position</label>
           <input 
@@ -40,6 +48,7 @@
           class="form-control"
           type="text"  value="{{user.position}}">
         </div>
+
         <div class="form-group">
           <label for="About-me">About me</label>
               <textarea
@@ -53,6 +62,13 @@
         
           </textarea>
         </div>
+        <!-- personal details save change button-->
+        <div>
+            <button style="float:right"
+             *ngIf="!isPersonDetailsEditableDisabled" 
+             class="btn btn-primary" 
+             (click)="changePersonalDetails($event)">Save changes</button>
+           </div><br><br>
 <!--set contact details-->
         <hr>
         <div>
@@ -60,7 +76,7 @@
             <button
               style="float:right"
               class="btn btn-primary" 
-             (click)="ContactDetailsEditableDisabled($event)">Edit</button>
+             (click)="ContactDetailsEditableDisabled($event)" *ngIf="isContactDetailsEditableDisabled">Edit</button>
         </div>
         <div class="from-group">
             <label for="Contact">Contatc No</label>
@@ -68,37 +84,42 @@
             <li *ngFor="let contact of user.contacts"> 
           
             <input 
+            [disabled]="isContactDetailsEditableDisabled"
             class="form-control"
             type="text"  value="{{contact}}">
           </li>
           </ul>
-          </div><br>
+          </div>
+          <!--hide the add contact button-->
         <button 
-        *ngIf = "!isContactDetailsEditableDisabled"
+        *ngIf = "!isContactDetailsEditableDisabled" 
         style="float:left" 
         class="btn btn-primary" 
-        (click)="addNewContact($event)"
-        [disabled]="isContactDetailsEditableDisabled"
+        (click)="addNewContacts($event)"
+        
         >Add more contacts</button><br><br>
         <label for="Contact">Address</label>           
-        <br><br>
+        
         <div style="margin-left:8%">
 
             <div class="from-group">
                 <label for="number"> No:</label>
-                <input 
+                <input
+                [disabled]="isContactDetailsEditableDisabled" 
                   class="form-control"
                   type="text"  value="{{user.address.no}}">
               </div>
               <div class="from-group">
                   <label for="Street">Street:</label>
                   <input 
+                  [disabled]="isContactDetailsEditableDisabled"
                     class="form-control"
                     type="text"  value="{{user.address.street}}">
                 </div>
                 <div class="from-group">
                     <label for="City">City:</label>
                     <input 
+                    [disabled]="isContactDetailsEditableDisabled"
                      class="form-control"
                      type="text"  value="{{user.address.city}}">
                   </div>
@@ -106,11 +127,115 @@
                  <div class="from-group">
                     <label for="email">email</label>
                       <input 
+                            [disabled]="isContactDetailsEditableDisabled"
                             class="form-control"
                             type="text"  value="{{user.email}}">
+                  </div><br><br>
+                  <!--contact details save button-->
+                  <div>
+                      <button style="float:right"
+                       *ngIf="!isContactDetailsEditableDisabled" 
+                       class="btn btn-primary" 
+                       (click)=" changeContactlDetails($event)">Save changes</button>
+                     </div><br><br>
+                  <br>
+
+
+                  <!--edit login details-->
+                  <hr>
+                  <div>
+                    <h5 style="display:inline-block">Login Details</h5>
+                    <button style="float:right" class="btn btn-primary"*ngIf="islogintDetailsEditableDisabled" (click)="loginDetailsEdit($event)" >Edit</button>
                   </div>
+                  <div class="form-group">
+                    <label for="username">User Name</label>
+                    <input 
+                    [(ngModel)]="user.username"
+                    [disabled]="islogintDetailsEditableDisabled"
+                    class="form-control"
+                    type="text" value="{{user.lname}}">
+                  </div>
+                  <div>
+                      <button style="float:right"
+                       *ngIf="!isPersonDetailsEditableDisabled" 
+                       class="btn btn-primary" 
+                       (click)="changePersonalDetails($event)">Save changes</button>
+                     </div><br><br>
+
+
+                  <!--password create-->
+
+                  <div class="from-group" *ngIf="islogintDetailsEditableDisabled">
+                    <label for="password" >password</label>
+                      <input 
+                            [disabled]="isContactDetailsEditableDisabled"
+                            class="form-control"
+                            type="password"  value="{{user.password}}">
+                  </div>
+
+               <!--check current password-->
+
+                <div class="from-group" *ngIf="!islogintDetailsEditableDisabled" >
+                  <div>
+                  <label for="currentPassword" >Current Password</label>
+                    <input   [(ngModel)]="user.currentPassword"
+                         
+                          class="form-control"
+                          type="password"  value="{{user.currentPassword}}">
+                  </div>
+                  <div>        
+                       <p style="color: red ; font-size: smaller" *ngIf="!errormsgEnable; else clearmsg1" >{{ errormsg1 }}</p>
+                         <ng-template #clearmsg1>
+                              <p></p>
+                        </ng-template>
+                  </div>
+
+                  <!--check new password length-->
+                  <div>
+                   <label for="currentPassword" >New Password</label>
+                    <input [(ngModel)]="user.newpassword"
+                         
+                          class="form-control"
+                          type="password"  value="{{user.newpassword}}">
+                  </div>
+
+                      <div >
+
+                          <p style="color: red; font-size: smaller" *ngIf="!errormsgEnable ; else clearmsg2" >{{ errormsg2 }}</p>
+
+                          <ng-template #clearmsg2>
+                            <p></p>
+                          </ng-template>
+                      </div>
+                  
+
+                      <!--match new password and confirm password-->
+                      <div>
+                          <label for="currentPassword" >Confirm password</label>
+                             <input [(ngModel)]="user.repassword"
+                                 class="form-control"
+                                type="password"  value="{{user.repassword}}"> 
+                      </div>
+                              <div>
+                                <p  style="color: red; font-size: smaller" *ngIf="!errormsgEnable; else clearmsg3">{{ errormsg3 }}</p>
+                                <ng-template #clearmsg3>
+                                    <p></p>
+                                  </ng-template>
+                              </div>
+                </div><br>
+
+
+
+                  <div>
+                     <button style="float:right"
+                      *ngIf="!islogintDetailsEditableDisabled" 
+                      class="btn btn-primary" 
+                      (click)="checkPassword()">Save changes</button>
+                    </div><br><br>
+
 
                      
     </div>
   </div>
+</div>
 </div>
