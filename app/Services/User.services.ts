@@ -25,7 +25,7 @@ export class UserServices{
 
     // create User type method to send data to user.component.ts
     getUser(id:String):User { 
-        return this.user;  
+        return this.user;
     }
 
 

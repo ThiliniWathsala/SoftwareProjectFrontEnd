@@ -50,8 +50,9 @@ export class UserComponent implements OnInit {
 
     //write the method to send data to data base
 
-
   }
+
+
 
   addNewContacts(event){ 
         
@@ -59,7 +60,7 @@ export class UserComponent implements OnInit {
         
      for(this.i=0;this.i<this.addNewContact.length;this.i++){  
       if((this.addNewContact.charAt(this.i)>=0 ) || (this.addNewContact.charAt(this.i)<=9) ){  //check numbers
-            this.count++;
+          this.count++;
       } else{
       alert("number is invalid");
     }

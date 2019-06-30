@@ -64,8 +64,7 @@
         </div>
         <!-- personal details save change button-->
         <div>
-           
-          <button style="float:right"
+            <button style="float:right"
              *ngIf="!isPersonDetailsEditableDisabled" 
              class="btn btn-primary" 
              (click)="changePersonalDetails($event)">Save changes</button>
@@ -75,8 +74,7 @@
         <div>
           <h5 style="display:inline-block">Contact Details</h5>
             <button
-          
-            style="float:right"
+              style="float:right"
               class="btn btn-primary" 
              (click)="ContactDetailsEditableDisabled($event)" *ngIf="isContactDetailsEditableDisabled">Edit</button>
         </div>
@@ -100,9 +98,6 @@
         (click)="addNewContacts($event)"
         
         >Add more contacts</button><br><br>
-
-
-
         <label for="Contact">Address</label>           
         
         <div style="margin-left:8%">
